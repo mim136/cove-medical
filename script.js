@@ -28,11 +28,11 @@ const medicalData = {
     ],
     hospitalTimezone: 'Africa/Addis_Ababa', // UTC+3
     paymentDetails: {
-        cbe: { name: 'Commercial Bank', account: '1000123456789', icon: 'assets/logos/cbe.png' },
-        abyssinia: { name: 'Abyssinia Bank', account: '887766554', icon: 'assets/logos/abyssinia.png' },
-        awash: { name: 'Awash Bank', account: '01234455667788', icon: 'assets/logos/awash.png' },
-        telebirr: { name: 'Telebirr', account: '+251 912 345 678', icon: 'assets/logos/telebirr.png' },
-        paypal: { name: 'PayPal', account: 'payments@cove.med', icon: 'assets/logos/paypal.png' },
+        cbe: { name: 'Commercial Bank', account: '1000123456789', icon:"cbe.png" },
+        abyssinia: { name: 'Abyssinia Bank', account: '887766554', icon: "abyssinia.png" },
+        awash: { name: 'Awash Bank', account: '01234455667788', icon: "awash.png" },
+        telebirr: { name: 'Telebirr', account: '+251 912 345 678', icon: "telebirr.png" },
+        paypal: { name: 'PayPal', account: 'payments@cove.med', icon: "paypal.png" },
         cash: { name: 'In-Person Cash', account: 'Pay at Front Desk', icon: 'https://cdn-icons-png.flaticon.com/512/2489/2489756.png' }
     }
 };
