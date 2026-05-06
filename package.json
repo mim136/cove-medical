@@ -1,6 +1,6 @@
 {
-  "name": "luxstay-medical-portal",
-  "version": "2.0.0",
+  "name": "cove-medical",
+  "version": "1.0.0",
   "description": "Futuristic Hospital Appointment Portal with Persistent Backend",
   "main": "server.js",
   "scripts": {
