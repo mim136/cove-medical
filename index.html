@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cove Medical - Next-generation healthcare appointment booking. Futuristic, secure, and patient-centric.">
+    <title>Cove Medical | 2050 Appointment Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mesh-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            COVE<span>MEDICAL</span>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <select class="lang-select" onchange="setLanguage(this.value)" id="lang-btn">
+                <option value="en">English</option>
+                <option value="am">አማርኛ</option>
+                <option value="om">Oromoo</option>
+                <option value="ti">ትግርኛ</option>
+                <option value="so">Soomaali</option>
+            </select>
+            <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header style="text-align: center; margin-bottom: 3rem;">
+            <h1 class="gradient-text" style="font-size: 3.5rem; margin-bottom: 1rem;" data-i18n="hero_title">Stay Healthy. Live Better.</h1>
+            <p style="font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;" data-i18n="hero_subtitle">Experience the next evolution of personalized healthcare. Secure, intelligent, and designed for your future.</p>
+        </header>
+
+        <section class="glass-card">
+            <!-- Step 1: Patient Info -->
+            <div class="step-content active" id="step-1">
+                <h2 class="gradient-text" data-i18n="step1_title">Personal Details</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;" data-i18n="step1_desc">Securely enter your identification details for the medical ledger.</p>
+                
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="input-group">
+                        <label for="full-name" data-i18n="label_name">Full Legal Name</label>
+                        <input type="text" id="full-name" placeholder="Full Name" autocomplete="name" data-i18n="placeholder_name">
+                    </div>
+                    <div class="input-group">
+                        <label for="email" data-i18n="label_email">Email Address</label>
+                        <input type="email" id="email" placeholder="Email Address" autocomplete="email" data-i18n="placeholder_email">
+                    </div>
+                    <div class="input-group">
+                        <label for="phone" data-i18n="label_phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Phone Number" autocomplete="tel" data-i18n="placeholder_phone">
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 1.5rem;">
+                    <label for="symptoms" data-i18n="label_symptoms">Describe Symptoms (AI Smart-Match Enabled)</label>
+                    <textarea id="symptoms" rows="4" placeholder="Describe your current condition..." data-i18n="placeholder_symptoms"></textarea>
+                    <div id="ai-suggestion" style="font-size: 0.8rem; color: var(--accent); margin-top: 0.5rem; transition: 0.3s; opacity: 0;"></div>
+                </div>
+
+                <div class="btn-row">
+                    <span></span>
+                    <button class="btn btn-primary" onclick="nextStep()" data-i18n="btn_continue">Continue Specialists <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                </div>
+            </div>
+
+            <!-- Step 2: Department & Doctor -->
+            <div class="step-content" id="step-2">
+                <h2 class="gradient-text" data-i18n="step2_title">Choose Specialist</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;" data-i18n="step2_desc">Select the department and practitioner that matches your needs.</p>
+
+                <div class="grid">
+                    <div class="input-group">
+                        <label for="dept-select" data-i18n="label_dept">Medical Department</label>
+                        <select id="dept-select">
+                            <option value="" disabled selected data-i18n="placeholder_dept">Select Department</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="doc-select" data-i18n="label_doc">Available Practitioners</label>
+                        <select id="doc-select" disabled>
+                            <option value="" disabled selected data-i18n="placeholder_doc_init">Select Department First</option>
+                        </select>
+                        <div id="doc-status" style="font-size: 0.85rem; margin-top: 0.5rem; transition: 0.3s; opacity: 0;"></div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label data-i18n="label_mode">Consultation Mode</label>
+                    <div class="toggle-group">
+                        <button class="toggle-btn active" data-type="in-person">🏥 In-Person</button>
+                        <button class="toggle-btn" data-type="telehealth">💻 Telehealth</button>
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn btn-ghost" onclick="prevStep()" data-i18n="btn_back">Back</button>
+                    <button class="btn btn-primary" onclick="nextStep()" data-i18n="btn_schedule">Schedule Visit <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                </div>
+            </div>
+
+            <!-- Step 3: Date & Time -->
+            <div class="step-content" id="step-3">
+                <h2 class="gradient-text" data-i18n="step3_title">Time Slot</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;" data-i18n="step3_desc">Real-time availability based on your current location.</p>
+
+                <div class="grid">
+                    <div class="input-group">
+                        <label for="appt-date" data-i18n="label_date">Preferred Date</label>
+                        <input type="date" id="appt-date">
+                    </div>
+                    <div class="input-group">
+                        <label for="time-select" data-i18n="label_slots">Available Slots</label>
+                        <select id="time-select">
+                            <option value="" disabled selected data-i18n="placeholder_slots">Select Date First</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn btn-ghost" onclick="prevStep()" data-i18n="btn_back">Back</button>
+                    <button class="btn btn-primary" onclick="nextStep()" data-i18n="btn_review">Final Review <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                </div>
+            </div>
+
+            <!-- Step 4: Review -->
+            <div class="step-content" id="step-4">
+                <h2 class="gradient-text" data-i18n="step4_title">Confirm Booking</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;" data-i18n="step4_desc">Review your details before encrypted submission.</p>
+
+                <div id="review-summary" style="background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-glass); margin-bottom: 2rem;">
+                    <!-- JS Injected Review -->
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn btn-ghost" onclick="prevStep()" data-i18n="btn_edit">Edit Details</button>
+                    <button class="btn btn-primary" id="submit-booking" onclick="submitForm()" data-i18n="btn_book">Encrypt & Book Appointment <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal-content">
+            <div style="background: var(--success); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h2 style="margin-bottom: 1rem;" data-i18n="success_title">Booking Confirmed!</h2>
+            <p style="color: var(--text-muted);" data-i18n="success_desc">Your appointment ID has been generated and stored on the medical blockchain.</p>
+            
+            <div class="qr-code">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=COVE-MEDICAL-SUCCESS" alt="Appointment QR Code" style="width: 100%; height: 100%;">
+            </div>
+
+            <p style="font-weight: 700; color: var(--primary); font-family: monospace; letter-spacing: 2px;" id="appt-id-display">COVE-XXXXX</p>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button class="btn btn-primary" style="flex: 1; justify-content: center;" onclick="window.print()" data-i18n="btn_download">Download Receipt</button>
+                <button class="btn btn-ghost" style="flex: 1; justify-content: center;" onclick="location.reload()" data-i18n="btn_new">New Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
